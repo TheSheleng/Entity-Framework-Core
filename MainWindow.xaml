@@ -1,0 +1,108 @@
+﻿<Window x:Class="Entity_Framework_Core.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Entity_Framework_Core"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF686868" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#888" />
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"  Width="8" Margin="0,4,0,4"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Track Name="PART_Track" IsDirectionReversed="true">
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}"  Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
+                    </Track.Thumb>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="10"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Departments:"/>
+                    <Label Content="--" x:Name="DepartmentCounterLabel"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Managers:"/>
+                    <Label Content="--" x:Name="ManageCounterLabel"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Products:"/>
+                    <Label Content="--" x:Name="ProductCounterLabel"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Sales:"/>
+                    <Label Content="--" x:Name="SaleCounterLabel"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Button Content="CRUD" x:Name="CrudButton"
+                    Click="CrudButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel>
+            <ScrollViewer Height="100">
+                <StackPanel>
+                    <Button Content="SELECT" x:Name="SelectButton"
+                        Click="SelectButton_Click"/>
+                    <Button Content="+ SALES" x:Name="RandSelesButton"
+                        Click="RandSelesButton_Click"/>
+                    <Button Content="2023 SALES" x:Name="ProductSalesButton"
+                        Click="ProductSalesButton_Click"/>
+                    <Button Content="Managers Today Statistic" x:Name="ManagersStatButton"
+                        Click="ManagersStatButton_Click"/>
+                    <Button Content="Navigation" x:Name="NavButton"
+                        Click="NavButton_Click"/>
+                    <Button Content="Navigation2" x:Name="Nav2Button"
+                        Click="Nav2Button_Click"/>
+                    <Button Content="Chief Button" x:Name="ChiefButton"
+                        Click="ChiefButton_Click"/>
+                    <Button Content="Subs Button" x:Name="SubsButton"
+                        Click="SubsButton_Click"/>
+                    <Button Content="Sales Prod" x:Name="SalesProdButton"
+                        Click="SalesProdButton_Click"/>
+                    <Button Content="Sales Stats" x:Name="SalesStatsButton"
+                        Click="SalesStatsButton_Click"/>
+                </StackPanel>
+            </ScrollViewer>
+        
+        
+            <ScrollViewer Height="200">
+                <Label x:Name="ResultLabel"/>
+            </ScrollViewer>
+        </StackPanel>
+    </StackPanel>
+</Window>
